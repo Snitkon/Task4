@@ -1,5 +1,5 @@
 // const passport = require('passport')
-const JwtStratagy = require('passport-jwt').Strategy;
+const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
 const User = mongoose.model('user');
@@ -14,7 +14,7 @@ const options = {
 
 module.exports = passport => {
 	passport.use(
-		new JwtStratagy(options, async (payload, done) => {
+		new JwtStrategy(options, async (payload, done) => {
 			try {
 				const user = await User.findById(payload.userId).select('email id');
 
